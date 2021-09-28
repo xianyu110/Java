@@ -1,4 +1,4 @@
-package ssm.utils;
+package com.czxy.mybatis_0928.utils;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -11,7 +11,7 @@ import java.io.InputStream;
  * @author  manor的大数据之路
  *  
  */
-public class MyBatisUtils {
+public class MyBatisUtils_1 {
 
     // 会话工厂
     private static SqlSessionFactory factory;

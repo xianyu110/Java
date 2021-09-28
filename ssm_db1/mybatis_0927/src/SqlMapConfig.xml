@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!--        TODO 注解版接口-->
+    <typeAliases>
+        <package name="com.czxy.mybatis_0928.domain"/>
+    </typeAliases>
+
     <!-- 插件 -->
     <plugins>
         <plugin interceptor="com.github.pagehelper.PageHelper">
@@ -31,9 +36,13 @@
 
     <mappers>
         <!-- 表示加载此包下的所有dao接口-->
-        <package name="com.czxy.ssm3.mapper"/>
+
+<!--        <package name="com.czxy.mybatis_0928.mapper"/>-->
 <!--        <package name="com.czxy.ssm3.mapper"/>-->
 <!--        <package name="com.czxy.batis.mapper"/>-->
+
+<!--        TODO 注解版接口-->
+        <mapper resource="com/mapperDemo/UserMapper.xml"/>
     </mappers>
 
 </configuration>

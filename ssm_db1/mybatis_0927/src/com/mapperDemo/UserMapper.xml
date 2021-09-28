@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper类">
+    &lt;!&ndash; 查询 &ndash;&gt;
+    <select id="方法名">SQL语句</select>
+
+    &lt;!&ndash; 添加 &ndash;&gt;
+    <insert id="方法名">SQL语句</insert>
+
+    &lt;!&ndash; 更新 &ndash;&gt;
+    <update id="方法名">SQL语句</update>
+
+    &lt;!&ndash; 删除 &ndash;&gt;
+    <delete id="方法名">SQL语句</delete>
+</mapper>-->
+<mapper namespace="com.czxy.mybatis_0928.mapper.UserMapper">
+
+    <select id="selectById" parameterType="string" resultType="com.czxy.mybatis_0928.domain.User">
+        select * from user where uid = #{id}
+    </select>
+</mapper>
