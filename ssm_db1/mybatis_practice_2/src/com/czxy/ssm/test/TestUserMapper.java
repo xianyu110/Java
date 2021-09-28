@@ -3,8 +3,10 @@ package com.czxy.ssm.test;
 import com.czxy.ssm.domain.User;
 import com.czxy.ssm.mapper.UserMapper;
 import com.czxy.ssm.utils.MyBatisUtils;
+import com.czxy.ssm.vo.UserVo;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,10 +36,67 @@ public class TestUserMapper {
         MyBatisUtils.commitAndclose();
     }
     @Test
-    public void testAdd() {
+    public void testselectByName() {
         UserMapper userMapper = MyBatisUtils.getMapper(UserMapper.class);
-
+        userMapper.selectByName("rose");
 
         MyBatisUtils.commitAndclose();
     }
+    @Test
+    public void testInsert(){
+        UserMapper mapper = MyBatisUtils.getMapper(UserMapper.class);
+
+        User user = new User();
+        user.setUid("3");
+        user.setUsername("jack");
+        user.setName("杰克");
+
+        Integer result = mapper.insert(user);
+
+        // 打印
+        System.out.println(result);
+
+        MyBatisUtils.commitAndclose();
+    }
+
+    @Test
+    public void testUpdate() {
+        UserMapper UserMapper = MyBatisUtils.getMapper(UserMapper.class);
+
+        User user = new User();
+        user.setUid("2");
+        user.setUsername("jack2");
+        user.setName("杰克2222");
+
+        int result = UserMapper.updateByPrimaryKey(user);
+
+        // 打印
+        System.out.println(result);
+
+        MyBatisUtils.commitAndclose();
+    }
+
+    @Test
+    public void testDelete() {
+        UserMapper UserMapper = MyBatisUtils.getMapper(UserMapper.class);
+
+        int result = UserMapper.deleteByPrimaryKey("2");
+
+        // 打印
+        System.out.println(result);
+
+        MyBatisUtils.commitAndclose();
+    }
+
+    @Test
+    public void testCondition(){
+        UserMapper mapper = MyBatisUtils.getMapper(UserMapper.class);
+        UserVo userVo = new UserVo();
+        userVo.setName("dddddddddddddd");
+
+        List<User> list = mapper.condition(userVo);
+        list.forEach(System.out::println);
+        MyBatisUtils.commitAndclose();
+    }
+
 }
