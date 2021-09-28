@@ -1,6 +1,8 @@
 package com.czxy.ssm.test;
 
+import com.czxy.ssm.domain.Order;
 import com.czxy.ssm.domain.User;
+import com.czxy.ssm.mapper.OrderMapper;
 import com.czxy.ssm.mapper.UserMapper;
 import com.czxy.ssm.utils.MyBatisUtils;
 import com.czxy.ssm.vo.UserVo;
@@ -16,12 +18,28 @@ import java.util.List;
 public class TestUserMapper {
 
 
+
     @Test
     public void testSelectById() {
-        UserMapper userMapper = MyBatisUtils.getMapper(UserMapper.class);
+
+        /*
+         * 一对多
+         * */
+      /*  UserMapper userMapper = MyBatisUtils.getMapper(UserMapper.class);
 
         User user = userMapper.selectById("u001");
         System.out.println(user);
+
+        MyBatisUtils.commitAndclose();
+*/
+
+      /*
+      *  多对一
+      * */
+        OrderMapper orderMapper = MyBatisUtils.getMapper(OrderMapper.class);
+
+        Order order = orderMapper.selectById("x001");
+        System.out.println(order);
 
         MyBatisUtils.commitAndclose();
     }
@@ -43,11 +61,11 @@ public class TestUserMapper {
         MyBatisUtils.commitAndclose();
     }
     @Test
-    public void testInsert(){
+    public void testinsert(){
         UserMapper mapper = MyBatisUtils.getMapper(UserMapper.class);
 
         User user = new User();
-        user.setUid("3");
+        user.setUid("1");
         user.setUsername("jack");
         user.setName("杰克");
 
@@ -64,7 +82,7 @@ public class TestUserMapper {
         UserMapper UserMapper = MyBatisUtils.getMapper(UserMapper.class);
 
         User user = new User();
-        user.setUid("2");
+        user.setUid("3");
         user.setUsername("jack2");
         user.setName("杰克2222");
 
@@ -80,7 +98,7 @@ public class TestUserMapper {
     public void testDelete() {
         UserMapper UserMapper = MyBatisUtils.getMapper(UserMapper.class);
 
-        int result = UserMapper.deleteByPrimaryKey("2");
+        int result = UserMapper.deleteByPrimaryKey("3");
 
         // 打印
         System.out.println(result);
@@ -92,11 +110,12 @@ public class TestUserMapper {
     public void testCondition(){
         UserMapper mapper = MyBatisUtils.getMapper(UserMapper.class);
         UserVo userVo = new UserVo();
-        userVo.setName("dddddddddddddd");
+        userVo.setName("d");
 
         List<User> list = mapper.condition(userVo);
         list.forEach(System.out::println);
         MyBatisUtils.commitAndclose();
     }
+
 
 }

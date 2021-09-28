@@ -21,9 +21,19 @@
     <delete id="方法名">SQL语句</delete>
 </mapper>-->
 <mapper namespace="com.czxy.ssm.mapper.UserMapper">
-    <select id="selectById" parameterType="string" resultType="com.czxy.ssm.domain.User">
+
+    <resultMap type="com.czxy.ssm.domain.User" id="userResultMap">
+        <id column="uid" property="uid"/>
+        <result column="username" property="username"/>
+        <collection property="orderList" column="uid" select="com.czxy.ssm.mapper.OrderMapper.findOrdersByUserId" />
+    </resultMap>
+
+    <select id="selectById" parameterType="string" resultMap="userResultMap">
         select * from user where uid = #{id}
     </select>
+    <!--<select id="selectById" parameterType="string" resultType="com.czxy.ssm.domain.User">
+        select * from user where uid = #{id}
+    </select>-->
     <select id="selectAll" parameterType="string" resultType="com.czxy.ssm.domain.User">
         select * from user
     </select>
@@ -31,18 +41,18 @@
         select * from user where username like #{username}
     </select>
     <insert id="insert" parameterType="string" >
-        INSERT INTO user (uid, username, name) values (#{uid}, #{name}, #{password});
+        INSERT INTO ssm_db1.user (uid, username, name) values (#{uid}, #{name}, #{password});
     </insert>
 
-<!--    <update id="updateByPrimaryKey" parameterType="user">
-        update user set username=#{username}, password=#{password}, name=#{name}, email=#{email},birthday=#{birthday},sex=#{sex}, state=#{state} where uid=#{uid}
-    </update>-->
+    <update id="updateByPrimaryKey" parameterType="user">
+        update ssm_db1.user set username=#{username}, password=#{password}, name=#{name}, email=#{email},birthday=#{birthday},sex=#{sex}, state=#{state} where uid=#{uid}
+    </update>
     <delete id="deleteByPrimaryKey">
         delete from ssm_db1.user where uid = #{uid}
     </delete>
 
     <select id="condition" parameterType="userVo" resultType="user">
-        select * from user where 1=1
+        select * from ssm_db1.user where 1=1
         <if test="name != null name != ''">
             and name like '%${name}%'
         </if>

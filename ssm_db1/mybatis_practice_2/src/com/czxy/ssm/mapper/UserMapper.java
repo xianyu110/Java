@@ -52,4 +52,6 @@ public interface UserMapper {
      * @return
      */
     public List<User> condition(UserVo userVo);
+
+
 }
