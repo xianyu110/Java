@@ -62,29 +62,32 @@
 
     <select id="condition" parameterType="string" resultType="com.czxy.mybatis_0929.domain.User">
         select * from ssm_db1.user
-        <if test="sex != null and sex != ''">
-            where sex = #{sex}
-        </if>
-    </select>
-
-    <select id="condition2" parameterType="string" resultType="com.czxy.mybatis_0929.domain.User">
-        select * from ssm_db1.user
         <where>
+            <if test="sex != null and sex != ''">
+                where sex = #{sex}
+            </if>
             <if test="beginTime != null and beginTime != ''">
                 <![CDATA[and DATE_FORMAT(birthday,'%Y-%m-%d')>= DATE_FORMAT(#{beginTime},'%Y-%m-%d') ]]>
             </if>
             <if test="endTime != null and endTime != ''">
                 <![CDATA[and DATE_FORMAT(birthday,'%Y-%m-%d')<= DATE_FORMAT(#{endTime},'%Y-%m-%d') ]]>
             </if>
+            <foreach collection="ids" open="uid in (" item="id" separator=","  close=")">
+                '${id}'
+            </foreach>
         </where>
+
+    </select>
+
+    <select id="condition2" parameterType="string" resultType="com.czxy.mybatis_0929.domain.User">
+        select * from ssm_db1.user
+
     </select>
 
     <select id="condition3" resultType="com.czxy.mybatis_0929.domain.User">
         select * from user
         <where>
-            <foreach collection="ids" open="uid in (" item="id" separator=","  close=")">
-                '${id}'
-            </foreach>
+
         </where>
     </select>
 <!--

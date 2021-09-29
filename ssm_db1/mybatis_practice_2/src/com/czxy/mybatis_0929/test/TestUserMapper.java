@@ -125,24 +125,7 @@ public void testSQL(){
         list.forEach(System.out::println);
         MyBatisUtils.commitAndclose();
     }
-    @Test
-    public void testCondition2(){
-        UserMapper mapper = MyBatisUtils.getMapper(UserMapper.class);
-        UserVo userVo = new UserVo();
-        userVo.setName("杰克");
-        userVo.setPassword("123");
-        List<User> list = mapper.condition2(userVo);
-        list.forEach(System.out::println);
-        MyBatisUtils.commitAndclose();
-    }
-    @Test
-    public void testCondition3(){
-        UserMapper mapper = MyBatisUtils.getMapper(UserMapper.class);
-        UserVo userVo = new UserVo();
-        List<User> list = mapper.condition3(userVo);
-        list.forEach(System.out::println);
-        MyBatisUtils.commitAndclose();
-    }
+
     @Test
     public void testCount(){
         UserMapper mapper = MyBatisUtils.getMapper(UserMapper.class);

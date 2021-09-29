@@ -16,13 +16,7 @@ public interface UserMapper {
      * @param name
      * @return
      */
-    public List<User> selectBySQL(@Param("name") String name);
-
-
-    public List<User> condition(@Param("sex") String sex);
-
-
-    public List<User> condition2(@Param("beginTime") String beginTime,@Param("endTime") String endTime);
+    public List<User> selectBySQL(@Param("name") String name,@Param("sex") String sex,@Param("beginTime") String beginTime,@Param("endTime") String endTime);
 
 
     /*
