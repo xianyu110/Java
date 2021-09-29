@@ -5,8 +5,8 @@
 <configuration>
     <typeAliases>
 <!--        <typeAlias type="com.czxy.ssm.domain.User" alias="user" />-->
-        <package name="com.czxy.ssm.domain"/>
-        <package name="com.czxy.ssm.vo"/>
+        <package name="com.czxy.mybatis_0929.domain"/>
+        <package name="com.czxy.mybatis_0929.vo"/>
     </typeAliases>
 
     <!-- 插件 -->

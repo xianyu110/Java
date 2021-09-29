@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.czxy.ssm.mapper.OrderMapper">
+<mapper namespace="com.czxy.mybatis_0929.mapper.OrderMapper">
     <select id="findOrdersByUserId" parameterType="string" resultType="order">
         select * from ssm_db1.orders where uid = #{uid}
     </select>
@@ -13,7 +13,7 @@
         <result property="name" column="name"></result>
         <result property="uid" column="uid"></result>
         <association property="user"
-                     select="com.czxy.ssm.mapper.UserMapper.selectById" column="uid"></association>
+                     select="com.czxy.mybatis_0929.mapper.UserMapper.selectById" column="uid"></association>
     </resultMap>
     <select id="selectById" resultMap="ordersResultMap">
         select * from ssm_db1.orders where oid = #{oid}

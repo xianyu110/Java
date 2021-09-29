@@ -20,9 +20,122 @@
     &lt;!&ndash; 删除 &ndash;&gt;
     <delete id="方法名">SQL语句</delete>
 </mapper>-->
-<mapper namespace="com.czxy.mybatis_0928.mapper.UserMapper">
+<mapper namespace="com.czxy.mybatis_0929.mapper.UserMapper">
 
-    <select id="selectById" parameterType="string" resultType="com.czxy.mybatis_0928.domain.User">
+    <resultMap type="com.czxy.mybatis_0929.domain.User" id="userResultMap">
+        <id column="uid" property="uid"/>
+        <result column="username" property="username"/>
+        <collection property="orderList" column="uid" select="com.czxy.mybatis_0929.mapper.OrderMapper.findOrdersByUserId" />
+    </resultMap>
+
+    <select id="selectById" parameterType="string" resultMap="userResultMap">
         select * from user where uid = #{id}
+    </select>
+    <!--<select id="selectById" parameterType="string" resultType="com.czxy.ssm.domain.User">
+        select * from user where uid = #{id}
+    </select>-->
+    <select id="selectAll" parameterType="string" resultType="com.czxy.mybatis_0929.domain.User">
+        select * from user
+    </select>
+    <select id="selectByName" parameterType="string" resultType="com.czxy.mybatis_0929.domain.User">
+        select * from user where username like #{username}
+    </select>
+    <insert id="insert" parameterType="string" >
+        INSERT INTO ssm_db1.user (uid, username, name) values (#{uid}, #{name}, #{password});
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="user">
+        update ssm_db1.user set username=#{username}, password=#{password}, name=#{name}, email=#{email},birthday=#{birthday},sex=#{sex}, state=#{state} where uid=#{uid}
+    </update>
+    <delete id="deleteByPrimaryKey">
+        delete from ssm_db1.user where uid = #{uid}
+    </delete>
+
+<!--    TODO 动态SQL-->
+    <select id="selectBySQL" parameterType="string" resultType="com.czxy.mybatis_0929.domain.User">
+        select * from user
+        <if test="name != null and name != ''">
+            where name like '%${name}'
+        </if>
+    </select>
+
+
+    <select id="condition" parameterType="string" resultType="com.czxy.mybatis_0929.domain.User">
+        select * from ssm_db1.user
+        <if test="sex != null and sex != ''">
+            where sex = #{sex}
+        </if>
+    </select>
+
+    <select id="condition2" parameterType="string" resultType="com.czxy.mybatis_0929.domain.User">
+        select * from ssm_db1.user
+        <where>
+            <if test="beginTime != null and beginTime != ''">
+                <![CDATA[and DATE_FORMAT(birthday,'%Y-%m-%d')>= DATE_FORMAT(#{beginTime},'%Y-%m-%d') ]]>
+            </if>
+            <if test="endTime != null and endTime != ''">
+                <![CDATA[and DATE_FORMAT(birthday,'%Y-%m-%d')<= DATE_FORMAT(#{endTime},'%Y-%m-%d') ]]>
+            </if>
+        </where>
+    </select>
+
+    <select id="condition3" resultType="com.czxy.mybatis_0929.domain.User">
+        select * from user
+        <where>
+            <foreach collection="ids" open="uid in (" item="id" separator=","  close=")">
+                '${id}'
+            </foreach>
+        </where>
+    </select>
+<!--
+
+    &lt;!&ndash;
+<foreach> 就是遍历一组数据，根据指定的内容拼凑成SQL语句片段
+		collection ，需要遍历的数据，如果实际参数就是数组本身，此处需要使用array
+		item ，每一次循环时存放数据的变量，在标签体中可以通过 ${item值}获得遍历数据
+		open ，SQL语句片段的开发位置
+		separator，分隔符号
+		close ，SQL语句片段的结束位置
+&ndash;&gt;
+
+    &lt;!&ndash; 例如：uid in (1,2,4,6) 片段的拼凑
+        开始 (变量 分隔符)*4 结束
+    &ndash;&gt;
+&lt;!&ndash;    <foreach collection="数组" open="uid in (" item="变量" separator=","  close=")">
+    </foreach>&ndash;&gt;
+
+
+
+&lt;!&ndash;
+         <choose\>标签：多条件
+    <select id="">
+        <choose>
+            <when test=""></when>
+            <when test=""></when>
+            <otherwise></otherwise>
+        </choose>
+    </select>&ndash;&gt;
+
+    <select id="condition2" parameterType="userVo" resultType="user">
+        select * from ssm_db1.user
+        <choose>
+            <when test=""></when>
+            <when test=""></when>
+            <otherwise></otherwise>
+        </choose>
+    </select>-->
+
+
+    <!-- 所有字段名称SQL片段 -->
+<!--
+    <sql id="user_all_column">uid, username, password, name, email, birthday, sex, state</sql>
+
+    <select id="selectAll" parameterType="string" resultMap="userResultMap">
+        select <include refid="user_all_column" /> from user
+    </select>
+-->
+
+    <select id="countUser" resultType="long">
+        select count(1) from user
     </select>
 </mapper>

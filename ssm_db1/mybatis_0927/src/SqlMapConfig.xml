@@ -5,7 +5,8 @@
 <configuration>
     <!--        TODO 注解版接口-->
     <typeAliases>
-        <package name="com.czxy.mybatis_0928.domain"/>
+        <package name="com.czxy.mybatis_0929.domain"/>
+        <package name="com.czxy.mybatis_0929.vo"/>
     </typeAliases>
 
     <!-- 插件 -->
