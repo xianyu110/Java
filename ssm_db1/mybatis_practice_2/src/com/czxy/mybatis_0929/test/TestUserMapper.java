@@ -1,8 +1,12 @@
 package com.czxy.mybatis_0929.test;
 
 import com.czxy.mybatis_0929.domain.Order;
+import com.czxy.mybatis_0929.domain.Student;
+import com.czxy.mybatis_0929.domain.Teacher;
 import com.czxy.mybatis_0929.domain.User;
 import com.czxy.mybatis_0929.mapper.OrderMapper;
+import com.czxy.mybatis_0929.mapper.StudentMapper;
+import com.czxy.mybatis_0929.mapper.TeacherMapper;
 import com.czxy.mybatis_0929.mapper.UserMapper;
 import com.czxy.mybatis_0929.utils.MyBatisUtils;
 import com.czxy.mybatis_0929.vo.UserVo;
@@ -24,24 +28,55 @@ public class TestUserMapper {
         /*
          * 一对多
          * */
-      /*  UserMapper userMapper = MyBatisUtils.getMapper(UserMapper.class);
+        UserMapper userMapper = MyBatisUtils.getMapper(UserMapper.class);
 
         User user = userMapper.selectById("u001");
         System.out.println(user);
 
-        MyBatisUtils.commitAndclose();
-*/
+//        MyBatisUtils.commitAndclose();
+
 
       /*
       *  多对一
       * */
-        OrderMapper orderMapper = MyBatisUtils.getMapper(OrderMapper.class);
+     /*   OrderMapper orderMapper = MyBatisUtils.getMapper(OrderMapper.class);
 
         Order order = orderMapper.selectById("x001");
         System.out.println(order);
 
-        MyBatisUtils.commitAndclose();
+        MyBatisUtils.commitAndclose();*/
     }
+
+
+    /*
+     *TODO  多对多
+     * */
+    @Test
+    public void test(){
+        //1 获得mapper
+        StudentMapper studentMapper = MyBatisUtils.getMapper(StudentMapper.class);
+
+        //2 查询素有
+        List<Student> list = studentMapper.selectAll();
+        list.forEach(System.out::println);
+
+        //3 释放
+//        MyBatisUtils.commitAndclose();
+    };    @Test
+    public void test2(){
+        //1 获得mapper
+        TeacherMapper teacherMapper = MyBatisUtils.getMapper(TeacherMapper.class);
+
+        //2 查询素有
+        List<Teacher> list = teacherMapper.selectAllBySid(1);
+        list.forEach(System.out::println);
+
+        //3 释放
+        MyBatisUtils.commitAndclose();
+    };
+
+
+
     @Test
     public void testSelectAll() {
         UserMapper userMapper = MyBatisUtils.getMapper(UserMapper.class);
@@ -124,6 +159,15 @@ public void testSQL(){
         List<User> list = mapper.condition(userVo);
         list.forEach(System.out::println);
         MyBatisUtils.commitAndclose();
+    }
+
+    @Test
+    public void  testAll(){
+        UserMapper mapper = MyBatisUtils.getMapper(UserMapper.class);
+        List<User> users = mapper.selectAll();
+        for (User user : users) {
+            System.out.println(user);
+        }
     }
 
     @Test

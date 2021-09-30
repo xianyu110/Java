@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czxy.mybatis_0929.mapper.TeacherMapper">
+            <select id="selectAllBySid" resultType="teacher">
+                select * from ssm_db1.teacher t, ssm_db1.teacher_student ts where t.tid =ts.teacher_id
+                and ts.student_id = #{sid}
+            </select>
+</mapper>

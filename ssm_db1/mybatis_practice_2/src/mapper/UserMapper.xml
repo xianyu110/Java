@@ -21,6 +21,10 @@
     <delete id="方法名">SQL语句</delete>
 </mapper>-->
 <mapper namespace="com.czxy.mybatis_0929.mapper.UserMapper">
+<!-- /*
+         * 一对多
+         * */-->
+
 
     <resultMap type="com.czxy.mybatis_0929.domain.User" id="userResultMap">
         <id column="uid" property="uid"/>
@@ -34,9 +38,9 @@
     <!--<select id="selectById" parameterType="string" resultType="com.czxy.ssm.domain.User">
         select * from user where uid = #{id}
     </select>-->
-    <select id="selectAll" parameterType="string" resultType="com.czxy.mybatis_0929.domain.User">
+ <!--   <select id="selectAll" parameterType="string" resultType="com.czxy.mybatis_0929.domain.User">
         select * from user
-    </select>
+    </select>-->
     <select id="selectByName" parameterType="string" resultType="com.czxy.mybatis_0929.domain.User">
         select * from user where username like #{username}
     </select>
@@ -123,8 +127,8 @@
         select <include refid="user_all_column" /> from user
     </select>
 -->
-
-    <select id="countUser" resultType="long">
-        select count(1) from user
+    <sql id="user_all_column">uid, username, password, name, email, birthday, sex, state</sql>
+    <select id="selectAll" parameterType="string" resultMap="userResultMap">
+        select <include refid="user_all_column" /> from user
     </select>
 </mapper>

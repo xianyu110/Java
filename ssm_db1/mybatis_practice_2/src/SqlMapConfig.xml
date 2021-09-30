@@ -37,8 +37,10 @@
 
     <mappers>
         <!-- 表示加载此包下的所有dao接口-->
-        <mapper resource="mapper/UserMapper.xml"/>
-        <mapper resource="mapper/OrdersMapper.xml"/>
+<!--        <mapper resource="mapper/UserMapper.xml"/>-->
+<!--        <mapper resource="mapper/OrdersMapper.xml"/>-->
+        <mapper resource="mapper/StudentMapper.xml"/>
+        <mapper resource="mapper/TeacherMapper.xml"/>
     </mappers>
 
 </configuration>

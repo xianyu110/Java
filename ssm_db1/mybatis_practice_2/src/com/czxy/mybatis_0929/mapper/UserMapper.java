@@ -11,6 +11,12 @@ import java.util.List;
  *  
  */
 public interface UserMapper {
+    /*
+    *
+    * */
+
+
+
     /**
      * 通过id查询详情
      * @param uid

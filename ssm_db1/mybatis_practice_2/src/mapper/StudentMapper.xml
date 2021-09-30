@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.czxy.mybatis_0929.mapper.StudentMapper">
+
+    <resultMap id="studentResultMap" type="student">
+        <id property="sid" column="sid"></id>
+        <result property="name" column="name"></result>
+        <collection property="tList" column="sid" select="com.czxy.mybatis_0929.mapper.TeacherMapper.selectAllBySid"></collection>
+    </resultMap>
+    <select id="selectAll" resultMap="studentResultMap">
+        select * from ssm_db1.student
+    </select>
+</mapper>
