@@ -1,12 +1,10 @@
 package com.czxy.mybatis_0929.test;
 
-import com.czxy.mybatis_0929.domain.Order;
-import com.czxy.mybatis_0929.domain.Student;
-import com.czxy.mybatis_0929.domain.Teacher;
+import com.czxy.mybatis_0929.domain.Book;
+import com.czxy.mybatis_0929.domain.Category;
 import com.czxy.mybatis_0929.domain.User;
-import com.czxy.mybatis_0929.mapper.OrderMapper;
-import com.czxy.mybatis_0929.mapper.StudentMapper;
-import com.czxy.mybatis_0929.mapper.TeacherMapper;
+import com.czxy.mybatis_0929.mapper.BookMapper;
+import com.czxy.mybatis_0929.mapper.CategoryMapper;
 import com.czxy.mybatis_0929.mapper.UserMapper;
 import com.czxy.mybatis_0929.utils.MyBatisUtils;
 import com.czxy.mybatis_0929.vo.UserVo;
@@ -18,10 +16,10 @@ import java.util.List;
  * @author  manor的大数据之路
  *  
  */
-public class TestUserMapper {
+public class TestMapper {
 
 
-
+    
     @Test
     public void testSelectById() {
 
@@ -45,35 +43,29 @@ public class TestUserMapper {
         System.out.println(order);
 
         MyBatisUtils.commitAndclose();*/
+
+
+
     }
-
-
-    /*
-     *TODO  多对多
-     * */
     @Test
-    public void test(){
-        //1 获得mapper
-        StudentMapper studentMapper = MyBatisUtils.getMapper(StudentMapper.class);
+    public void testSelectById2() {
 
-        //2 查询素有
-        List<Student> list = studentMapper.selectAll();
-        list.forEach(System.out::println);
+        /*
+         * 一对多
+         * */
+        CategoryMapper categoryMapper = MyBatisUtils.getMapper(CategoryMapper.class);
+        List<Category> cList = categoryMapper.selectAll();
+            System.out.println(cList);
 
-        //3 释放
+/*        BookMapper bookMapper = MyBatisUtils.getMapper(BookMapper.class);
+        List<Book> books = bookMapper.selectAll();
+        for (Book book : books) {
+            System.out.println(book);
+        }*/
 //        MyBatisUtils.commitAndclose();
-    };    @Test
-    public void test2(){
-        //1 获得mapper
-        TeacherMapper teacherMapper = MyBatisUtils.getMapper(TeacherMapper.class);
+        }
 
-        //2 查询素有
-        List<Teacher> list = teacherMapper.selectAllBySid(1);
-        list.forEach(System.out::println);
 
-        //3 释放
-        MyBatisUtils.commitAndclose();
-    };
 
 
 

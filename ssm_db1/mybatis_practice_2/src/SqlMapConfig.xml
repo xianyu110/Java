@@ -28,7 +28,7 @@
             <dataSource type="POOLED">
                 <!-- 数据库连接基本信息 -->
                 <property name="driver" value="com.mysql.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://localhost:3306/ssm_db1" />
+                <property name="url" value="jdbc:mysql://localhost:3306/ssm_db2" />
                 <property name="username" value="root" />
                 <property name="password" value="root" />
             </dataSource>
@@ -37,10 +37,12 @@
 
     <mappers>
         <!-- 表示加载此包下的所有dao接口-->
+
+        <package name="com.czxy.mybatis_0929.mapper"/>
 <!--        <mapper resource="mapper/UserMapper.xml"/>-->
 <!--        <mapper resource="mapper/OrdersMapper.xml"/>-->
-        <mapper resource="mapper/StudentMapper.xml"/>
-        <mapper resource="mapper/TeacherMapper.xml"/>
+<!--        <mapper resource="mapper/StudentMapper.xml"/>-->
+<!--        <mapper resource="mapper/TeacherMapper.xml"/>-->
     </mappers>
 
 </configuration>
