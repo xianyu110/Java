@@ -14,6 +14,8 @@ public class Demo03Test {
     public static void change(String str, Function<String,String> fun1, Function<String,Integer> fun2, Function<Integer,Integer> fun3 ){
         int num = fun1.andThen(fun2.andThen(fun3)).apply(str);
         System.out.println(num);
+
+
     }
 
     public static void main(String[] args) {
